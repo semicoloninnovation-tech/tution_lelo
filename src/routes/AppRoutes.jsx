@@ -1,4 +1,9 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter,
+  Navigate,
+  Routes,
+  Route,
+} from "react-router-dom";
 
 import MainLayout from "../layouts/MainLayout";
 
@@ -18,6 +23,16 @@ import ContactMessages from "../pages/Admin/ContactMessages";
 
 import ScrollAnimations from "../components/ScrollAnimations";
 import AdminSubjects from "../pages/Admin/Subjects";
+
+function ProtectedAdminRoute({ children }) {
+  const admin = localStorage.getItem("admin");
+
+  if (!admin) {
+    return <Navigate to="/admin/login" replace />;
+  }
+
+  return children;
+}
 
 function AppRoutes() {
   return (
@@ -58,30 +73,56 @@ function AppRoutes() {
         />
 
         <Route
-          path="/admin/dashboard"
-          element={<AdminDashboard />}
+          path="/admin"
+          element={
+            <Navigate to="/admin/dashboard" replace />
+          }
         />
-        
 
         <Route
-  path="/admin/student-requests"
-  element={<StudentRequests />}
-/>
+          path="/admin/dashboard"
+          element={
+            <ProtectedAdminRoute>
+              <AdminDashboard />
+            </ProtectedAdminRoute>
+          }
+        />
 
-<Route
-  path="/admin/tutor-registrations"
-  element={<TutorRegistrations />}
-/>
+        <Route
+          path="/admin/student-requests"
+          element={
+            <ProtectedAdminRoute>
+              <StudentRequests />
+            </ProtectedAdminRoute>
+          }
+        />
 
-<Route
-  path="/admin/contact-messages"
-  element={<ContactMessages />}
-/>
+        <Route
+          path="/admin/tutor-registrations"
+          element={
+            <ProtectedAdminRoute>
+              <TutorRegistrations />
+            </ProtectedAdminRoute>
+          }
+        />
 
-<Route
-  path="/admin/subjects"
-  element={<AdminSubjects />}
-/>
+        <Route
+          path="/admin/contact-messages"
+          element={
+            <ProtectedAdminRoute>
+              <ContactMessages />
+            </ProtectedAdminRoute>
+          }
+        />
+
+        <Route
+          path="/admin/subjects"
+          element={
+            <ProtectedAdminRoute>
+              <AdminSubjects />
+            </ProtectedAdminRoute>
+          }
+        />
       </Routes>
 
     </BrowserRouter>

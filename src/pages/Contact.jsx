@@ -151,16 +151,32 @@ function Contact() {
 
             <div className="contact-map-card premium-card">
 
-              <FaMapMarkerAlt />
+              <div className="contact-map-heading">
 
-              <h3>
-                Serving Local Learning Needs
-              </h3>
+                <FaMapMarkerAlt />
 
-              <p>
-                Home tuition support across
-                nearby student communities.
-              </p>
+                <div>
+
+                  <h3>
+                    Serving Local Learning Needs
+                  </h3>
+
+                  <p>
+                    Home tuition support across
+                    nearby student communities.
+                  </p>
+
+                </div>
+
+              </div>
+
+              <iframe
+                title="TuitionLelo service area on Google Maps"
+                src="https://www.google.com/maps?q=India&output=embed"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              ></iframe>
 
             </div>
 

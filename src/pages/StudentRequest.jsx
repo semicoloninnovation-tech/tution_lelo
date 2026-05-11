@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import {
   FaArrowRight,
   FaBookOpen,
@@ -6,6 +7,8 @@ import {
   FaPhoneAlt,
   FaUserGraduate,
 } from "react-icons/fa";
+
+import MultiSelectDropdown from "../components/MultiSelectDropdown";
 
 function StudentRequest() {
 
@@ -15,7 +18,7 @@ function StudentRequest() {
   const [formData, setFormData] = useState({
     name: "",
     studentClass: "",
-    subject: "",
+    subjects: [],
     tutor: "",
     location: "",
     contact: "",
@@ -37,7 +40,7 @@ function StudentRequest() {
 
   }, []);
 
-  // FETCH SUBJECTS FROM DB
+  // FETCH SUBJECTS
   useEffect(() => {
 
     fetch(
@@ -56,6 +59,16 @@ function StudentRequest() {
   // HANDLE INPUT CHANGE
   const handleChange = (e) => {
 
+    if (e.target.name === "tutor") {
+      setFormData({
+        ...formData,
+        tutor: e.target.value,
+        subjects: [],
+      });
+
+      return;
+    }
+
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -63,10 +76,34 @@ function StudentRequest() {
 
   };
 
+  const selectedTutor = tutors.find(
+    (tutor) => tutor.name === formData.tutor
+  );
+
+  const tutorSubjects =
+    selectedTutor?.subjects || selectedTutor?.subject || "";
+
+  const availableSubjects = tutorSubjects
+    ? tutorSubjects
+        .split(",")
+        .map((subject) => subject.trim())
+        .filter(Boolean)
+    : subjects.map((subject) => subject.subject);
+
+  const subjectOptions = availableSubjects.map((subject) => ({
+    value: subject,
+    label: subject,
+  }));
+
   // SUBMIT FORM
   const handleSubmit = async (e) => {
 
     e.preventDefault();
+
+    if (formData.subjects.length === 0) {
+      alert("Please select at least one subject");
+      return;
+    }
 
     try {
 
@@ -78,7 +115,11 @@ function StudentRequest() {
             "Content-Type":
               "application/json",
           },
-          body: JSON.stringify(formData),
+          body: JSON.stringify({
+            ...formData,
+            subject: formData.subjects.join(", "),
+            subjects: formData.subjects.join(", "),
+          }),
         }
       );
 
@@ -93,7 +134,7 @@ function StudentRequest() {
         setFormData({
           name: "",
           studentClass: "",
-          subject: "",
+          subjects: [],
           tutor: "",
           location: "",
           contact: "",
@@ -108,6 +149,7 @@ function StudentRequest() {
     } catch (error) {
 
       console.log(error);
+
       alert("Server Error");
 
     }
@@ -134,7 +176,7 @@ function StudentRequest() {
             </h1>
 
             <p>
-              Share the class, subject,
+              Share the class, subjects,
               location, and contact details.
               Our team will shortlist suitable
               tutors for your learning goals.
@@ -171,7 +213,7 @@ function StudentRequest() {
               <p>
                 Fill out the form below and we
                 will connect you with the best
-                tutor near you.
+                tutors near you.
               </p>
 
             </div>
@@ -213,37 +255,6 @@ function StudentRequest() {
 
               </div>
 
-              {/* SUBJECT DROPDOWN */}
-              <div className="form-group">
-
-                <label>Select Subject</label>
-
-                <select
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
-                >
-
-                  <option value="">
-                    Choose Subject
-                  </option>
-
-                  {subjects.map((subject) => (
-
-                    <option
-                      key={subject.id}
-                      value={subject.subject}
-                    >
-                      {subject.subject}
-                    </option>
-
-                  ))}
-
-                </select>
-
-              </div>
-
               {/* TUTOR DROPDOWN */}
               <div className="form-group">
 
@@ -272,6 +283,33 @@ function StudentRequest() {
                   ))}
 
                 </select>
+
+              </div>
+
+              {/* MULTIPLE SUBJECT DROPDOWN */}
+              <div className="form-group">
+
+                <label>Select Subjects</label>
+
+                <MultiSelectDropdown
+                  id="student-subjects"
+                  label="Select Subjects"
+                  options={subjectOptions}
+                  selectedValues={formData.subjects}
+                  onChange={(selectedSubjects) =>
+                    setFormData({
+                      ...formData,
+                      subjects: selectedSubjects,
+                    })
+                  }
+                  placeholder={
+                    formData.tutor
+                      ? "Choose one or more subjects"
+                      : "Select a tutor first"
+                  }
+                  disabled={!formData.tutor}
+                  emptyMessage="No subjects available for this tutor"
+                />
 
               </div>
 
