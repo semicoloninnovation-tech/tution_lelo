@@ -1,8 +1,11 @@
 import {
+  FaCalendarCheck,
+  FaClipboardList,
   FaEnvelope,
   FaHome,
   FaBookOpen,
   FaUserGraduate,
+  FaUsersCog,
   FaChalkboardTeacher,
 } from "react-icons/fa";
 
@@ -39,6 +42,21 @@ function AdminSidebar() {
       icon: <FaBookOpen />,
       label: "Subjects",
       path: "/admin/subjects",
+    },
+    {
+      icon: <FaUsersCog />,
+      label: "Members",
+      path: "/admin/members",
+    },
+    {
+      icon: <FaCalendarCheck />,
+      label: "Attendance",
+      path: "/admin/attendance",
+    },
+    {
+      icon: <FaClipboardList />,
+      label: "Tests",
+      path: "/admin/tests",
     },
   ];
 

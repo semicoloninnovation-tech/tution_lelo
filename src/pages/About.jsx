@@ -28,7 +28,7 @@ function About() {
   ];
 
   return (
-    <section className="about-page inner-page premium-section">
+    <section className="about-page inner-page premium-section cartoon-about-bg">
       <div className="container">
         <div className="inner-hero about-hero">
           <div>
@@ -41,8 +41,8 @@ function About() {
           </div>
 
           <img
-            src="https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=900&q=80"
-            alt="Students studying in a modern classroom"
+            src="/cartoon/about-hero.svg"
+            alt="Cartoon students learning together"
           />
         </div>
 

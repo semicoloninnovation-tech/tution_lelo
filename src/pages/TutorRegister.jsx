@@ -122,7 +122,7 @@ function TutorRegister() {
   };
 
   return (
-    <section className="tutor-page lead-form-page">
+    <section className="tutor-page lead-form-page cartoon-tutor-bg">
 
       <div className="container">
 

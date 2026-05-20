@@ -16,6 +16,8 @@ function StudentRequests() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedStudent, setSelectedStudent] =
     useState(null);
+  const [statusFilter, setStatusFilter] =
+    useState("all");
 
   // FETCH STUDENT REQUESTS
   const fetchRequests = async () => {
@@ -46,13 +48,21 @@ function StudentRequests() {
 
   // SEARCH FILTER
   const filteredRequests = requests.filter(
-    (item) =>
-      item.name
+    (item) => {
+      const searchMatched = item.name
         .toLowerCase()
         .includes(searchTerm.toLowerCase()) ||
       item.subject
         .toLowerCase()
-        .includes(searchTerm.toLowerCase())
+        .includes(searchTerm.toLowerCase());
+
+      if (!searchMatched) return false;
+      if (statusFilter === "all") return true;
+      return (
+        (item.status || "")
+          .toLowerCase() === statusFilter
+      );
+    }
   );
 
   // APPROVE REQUEST
@@ -194,6 +204,22 @@ function StudentRequests() {
             </div>
 
           </div>
+          <div className="mobile-filter-strip">
+            {[
+              ["all", "All"],
+              ["approved", "Approved"],
+              ["pending", "Pending"],
+            ].map(([value, label]) => (
+              <button
+                key={value}
+                type="button"
+                className={`filter-chip ${statusFilter === value ? "active" : ""}`}
+                onClick={() => setStatusFilter(value)}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
 
           {/* TABLE */}
           <div className="dashboard-table-wrapper">
@@ -223,21 +249,21 @@ function StudentRequests() {
 
                     <tr key={item.id}>
 
-                      <td>{item.name}</td>
+                      <td data-label="Student">{item.name}</td>
 
-                      <td>
+                      <td data-label="Class">
                         {item.studentClass}
                       </td>
 
-                      <td>{item.subject}</td>
+                      <td data-label="Subject">{item.subject}</td>
 
-                      <td>{item.tutor}</td>
+                      <td data-label="Tutor">{item.tutor}</td>
 
-                      <td>{item.location}</td>
+                      <td data-label="Location">{item.location}</td>
 
-                      <td>{item.contact}</td>
+                      <td data-label="Contact">{item.contact}</td>
 
-                      <td>
+                      <td data-label="Status">
 
                         <span
                           className={`status-pill ${
@@ -253,7 +279,7 @@ function StudentRequests() {
                       </td>
 
                       {/* ACTIONS */}
-                      <td>
+                      <td data-label="Actions">
 
                         <div className="table-actions">
 

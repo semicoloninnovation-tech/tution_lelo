@@ -313,29 +313,29 @@ function AdminDashboard() {
                           key={student.id}
                         >
 
-                          <td>
+                          <td data-label="Name">
                             {student.name}
                           </td>
 
-                          <td>
+                          <td data-label="Class">
                             {
                               student.studentClass
                             }
                           </td>
 
-                          <td>
+                          <td data-label="Subject">
                             {
                               student.subject
                             }
                           </td>
 
-                          <td>
+                          <td data-label="Location">
                             {
                               student.location
                             }
                           </td>
 
-                          <td>
+                          <td data-label="Status">
 
                             <span
                               className={`status-pill ${

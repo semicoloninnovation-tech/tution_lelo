@@ -13,6 +13,8 @@ function TutorRegistrations() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedTutor, setSelectedTutor] =
     useState(null);
+  const [statusFilter, setStatusFilter] =
+    useState("all");
 
   // FETCH TUTORS
   const fetchTutors = async () => {
@@ -34,11 +36,17 @@ function TutorRegistrations() {
   }, []);
 
   // SEARCH FILTER
-  const filteredTutors = tutors.filter((tutor) =>
-    tutor.name
+  const filteredTutors = tutors.filter((tutor) => {
+    const searchMatched = tutor.name
       .toLowerCase()
-      .includes(searchTerm.toLowerCase())
-  );
+      .includes(searchTerm.toLowerCase());
+    if (!searchMatched) return false;
+    if (statusFilter === "all") return true;
+    return (
+      (tutor.status || "")
+        .toLowerCase() === statusFilter
+    );
+  });
 
   // APPROVE TUTOR
   const handleApprove = async (id) => {
@@ -144,6 +152,22 @@ function TutorRegistrations() {
               <h2>Registered Tutors</h2>
             </div>
           </div>
+          <div className="mobile-filter-strip">
+            {[
+              ["all", "All"],
+              ["approved", "Approved"],
+              ["pending", "Pending"],
+            ].map(([value, label]) => (
+              <button
+                key={value}
+                type="button"
+                className={`filter-chip ${statusFilter === value ? "active" : ""}`}
+                onClick={() => setStatusFilter(value)}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
 
           <div className="dashboard-table-wrapper">
             <table className="dashboard-table">
@@ -164,21 +188,21 @@ function TutorRegistrations() {
                 {filteredTutors.length > 0 ? (
                   filteredTutors.map((tutor) => (
                     <tr key={tutor.id}>
-                      <td>{tutor.name}</td>
+                      <td data-label="Name">{tutor.name}</td>
 
-                      <td>
+                      <td data-label="Qualification">
                         {tutor.qualification}
                       </td>
 
-                      <td>{tutor.subjects}</td>
+                      <td data-label="Subjects">{tutor.subjects}</td>
 
-                      <td>{tutor.experience}</td>
+                      <td data-label="Experience">{tutor.experience}</td>
 
-                      <td>{tutor.location}</td>
+                      <td data-label="Location">{tutor.location}</td>
 
-                      <td>{tutor.contact}</td>
+                      <td data-label="Contact">{tutor.contact}</td>
 
-                      <td>
+                      <td data-label="Status">
                         <span
                           className={`status-pill ${
                             tutor.status ===
@@ -192,7 +216,7 @@ function TutorRegistrations() {
                       </td>
 
                       {/* ACTIONS */}
-                      <td>
+                      <td data-label="Actions">
                         <div className="table-actions">
                           {/* VIEW */}
                           <button

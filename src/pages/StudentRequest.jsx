@@ -1,73 +1,24 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import {
   FaArrowRight,
-  FaBookOpen,
+  FaBolt,
   FaMapMarkerAlt,
   FaPhoneAlt,
   FaUserGraduate,
 } from "react-icons/fa";
 
-import MultiSelectDropdown from "../components/MultiSelectDropdown";
-
 function StudentRequest() {
-
-  const [tutors, setTutors] = useState([]);
-  const [subjects, setSubjects] = useState([]);
 
   const [formData, setFormData] = useState({
     name: "",
     studentClass: "",
-    subjects: [],
-    tutor: "",
     location: "",
     contact: "",
   });
 
-  // FETCH APPROVED TUTORS
-  useEffect(() => {
-
-    fetch(
-      "https://vnaksh.com/tutor/getApprovedTutors.php"
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        setTutors(data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-  }, []);
-
-  // FETCH SUBJECTS
-  useEffect(() => {
-
-    fetch(
-      "https://vnaksh.com/tutor/getSubjects.php"
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        setSubjects(data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-  }, []);
-
   // HANDLE INPUT CHANGE
   const handleChange = (e) => {
-
-    if (e.target.name === "tutor") {
-      setFormData({
-        ...formData,
-        tutor: e.target.value,
-        subjects: [],
-      });
-
-      return;
-    }
 
     setFormData({
       ...formData,
@@ -76,34 +27,10 @@ function StudentRequest() {
 
   };
 
-  const selectedTutor = tutors.find(
-    (tutor) => tutor.name === formData.tutor
-  );
-
-  const tutorSubjects =
-    selectedTutor?.subjects || selectedTutor?.subject || "";
-
-  const availableSubjects = tutorSubjects
-    ? tutorSubjects
-        .split(",")
-        .map((subject) => subject.trim())
-        .filter(Boolean)
-    : subjects.map((subject) => subject.subject);
-
-  const subjectOptions = availableSubjects.map((subject) => ({
-    value: subject,
-    label: subject,
-  }));
-
   // SUBMIT FORM
   const handleSubmit = async (e) => {
 
     e.preventDefault();
-
-    if (formData.subjects.length === 0) {
-      alert("Please select at least one subject");
-      return;
-    }
 
     try {
 
@@ -117,8 +44,9 @@ function StudentRequest() {
           },
           body: JSON.stringify({
             ...formData,
-            subject: formData.subjects.join(", "),
-            subjects: formData.subjects.join(", "),
+            subject: "",
+            subjects: "",
+            tutor: "",
           }),
         }
       );
@@ -134,8 +62,6 @@ function StudentRequest() {
         setFormData({
           name: "",
           studentClass: "",
-          subjects: [],
-          tutor: "",
           location: "",
           contact: "",
         });
@@ -157,7 +83,7 @@ function StudentRequest() {
   };
 
   return (
-    <section className="student-page lead-form-page">
+    <section className="student-page lead-form-page cartoon-student-bg">
 
       <div className="container">
 
@@ -176,10 +102,9 @@ function StudentRequest() {
             </h1>
 
             <p>
-              Share the class, subjects,
-              location, and contact details.
-              Our team will shortlist suitable
-              tutors for your learning goals.
+              Share simple details and we will
+              quickly connect you with the right
+              tutor for your class.
             </p>
 
             <div className="lead-benefits">
@@ -190,13 +115,13 @@ function StudentRequest() {
               </span>
 
               <span>
-                <FaBookOpen />
-                All major subjects
+                <FaMapMarkerAlt />
+                Local home tuition
               </span>
 
               <span>
-                <FaMapMarkerAlt />
-                Local home tuition
+                <FaBolt />
+                Fast callback support
               </span>
 
             </div>
@@ -204,7 +129,7 @@ function StudentRequest() {
           </div>
 
           {/* RIGHT SIDE */}
-          <div className="student-form-wrapper premium-form">
+          <div className="student-form-wrapper premium-form simple-book-form">
 
             <div className="student-form-content">
 
@@ -255,73 +180,14 @@ function StudentRequest() {
 
               </div>
 
-              {/* TUTOR DROPDOWN */}
               <div className="form-group">
 
-                <label>Select Tutor</label>
-
-                <select
-                  name="tutor"
-                  value={formData.tutor}
-                  onChange={handleChange}
-                  required
-                >
-
-                  <option value="">
-                    Choose Tutor
-                  </option>
-
-                  {tutors.map((tutor) => (
-
-                    <option
-                      key={tutor.id}
-                      value={tutor.name}
-                    >
-                      {tutor.name}
-                    </option>
-
-                  ))}
-
-                </select>
-
-              </div>
-
-              {/* MULTIPLE SUBJECT DROPDOWN */}
-              <div className="form-group">
-
-                <label>Select Subjects</label>
-
-                <MultiSelectDropdown
-                  id="student-subjects"
-                  label="Select Subjects"
-                  options={subjectOptions}
-                  selectedValues={formData.subjects}
-                  onChange={(selectedSubjects) =>
-                    setFormData({
-                      ...formData,
-                      subjects: selectedSubjects,
-                    })
-                  }
-                  placeholder={
-                    formData.tutor
-                      ? "Choose one or more subjects"
-                      : "Select a tutor first"
-                  }
-                  disabled={!formData.tutor}
-                  emptyMessage="No subjects available for this tutor"
-                />
-
-              </div>
-
-              {/* LOCATION */}
-              <div className="form-group">
-
-                <label>Location</label>
+                <label>Address</label>
 
                 <input
                   type="text"
                   name="location"
-                  placeholder="Enter your location"
+                  placeholder="Enter your address"
                   value={formData.location}
                   onChange={handleChange}
                   required
@@ -334,9 +200,7 @@ function StudentRequest() {
 
                 <label>Contact Number</label>
 
-                <div className="input-with-icon">
-
-                  <FaPhoneAlt />
+                <div className="form-group">
 
                   <input
                     type="tel"
@@ -354,9 +218,9 @@ function StudentRequest() {
               {/* SUBMIT */}
               <button
                 type="submit"
-                className="submit-btn"
+                className="submit-btn book-highlight-btn"
               >
-                Submit Request
+                Book Tutor Now
                 <FaArrowRight />
               </button>
 

@@ -10,11 +10,16 @@ import {
   FaLanguage,
   FaMapMarkerAlt,
   FaMicroscope,
+  FaPenNib,
+  FaPhoneAlt,
   FaQuoteLeft,
+  FaRocket,
   FaShieldAlt,
   FaStar,
+  FaThumbsUp,
   FaUserGraduate,
   FaUsers,
+  FaWhatsapp,
 } from "react-icons/fa";
 
 function Home() {
@@ -71,6 +76,34 @@ function Home() {
     },
   ];
 
+  const courseTracks = [
+    {
+      icon: <FaBookOpen />,
+      title: "Foundation Track",
+      classRange: "Nursery to Class 8",
+      text: "Concept clarity in Maths, Science, Languages, and Social Science.",
+    },
+    {
+      icon: <FaBrain />,
+      title: "Senior School Track",
+      classRange: "Class 9 to 12",
+      text: "Board-focused preparation with weekly revision and chapter tests.",
+    },
+    {
+      icon: <FaRocket />,
+      title: "Competitive Track",
+      classRange: "JEE / NEET Focus",
+      text: "Targeted practice, doubt clearing, and exam strategy support.",
+    },
+  ];
+
+  const studentBenefits = [
+    "One-to-one personalized attention at home",
+    "Instant doubt support and regular progress tracking",
+    "Topic-wise tests with parent-friendly performance updates",
+    "Flexible timing for school and coaching balance",
+  ];
+
   return (
     <>
       <section className="hero public-hero">
@@ -81,11 +114,11 @@ function Home() {
               Premium home tuition network
             </span>
 
-            <h1>Find the right tutor for confident, focused learning.</h1>
+            <h1>Best home tuition support for stronger marks and confidence.</h1>
 
             <p>
-              TuitionLelo connects students with verified home tutors for every
-              class, subject, and learning goal.
+              From primary classes to board and entrance preparation, TuitionLelo
+              helps students learn better with trusted tutors near their area.
             </p>
 
             <div className="hero-buttons">
@@ -131,7 +164,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="why-section premium-section">
+      <section className="why-section premium-section home-learning-cartoon">
         <div className="container">
           <div className="section-title">
             <span className="public-eyebrow">Why TuitionLelo</span>
@@ -144,7 +177,7 @@ function Home() {
 
           <div className="why-grid">
             {features.map((feature) => (
-              <div className="why-card premium-card" key={feature.title}>
+              <div className="why-card premium-card home-cartoon-card" key={feature.title}>
                 <span className="feature-icon">{feature.icon}</span>
                 <h3>{feature.title}</h3>
                 <p>{feature.text}</p>
@@ -154,7 +187,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="subjects-section premium-section tinted-section">
+      <section className="subjects-section premium-section tinted-section home-learning-cartoon">
         <div className="container">
           <div className="section-title">
             <span className="public-eyebrow">Popular Subjects</span>
@@ -167,7 +200,7 @@ function Home() {
 
           <div className="subjects-grid">
             {subjects.map((subject) => (
-              <div className="subject-card premium-card" key={subject.title}>
+              <div className="subject-card premium-card home-cartoon-card" key={subject.title}>
                 <span className="feature-icon">{subject.icon}</span>
                 <h3>{subject.title}</h3>
                 <p>{subject.text}</p>
@@ -177,7 +210,27 @@ function Home() {
         </div>
       </section>
 
-      <section className="works-section premium-section">
+      <section className="tracks-section premium-section home-learning-cartoon">
+        <div className="container">
+          <div className="section-title">
+            <span className="public-eyebrow">Popular Courses</span>
+            <h2>Choose the right learning track for your class and goals.</h2>
+          </div>
+
+          <div className="tracks-grid">
+            {courseTracks.map((track) => (
+              <article className="track-card premium-card home-cartoon-card" key={track.title}>
+                <span className="feature-icon">{track.icon}</span>
+                <h3>{track.title}</h3>
+                <strong>{track.classRange}</strong>
+                <p>{track.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="works-section premium-section home-trust-cartoon">
         <div className="container">
           <div className="section-title">
             <span className="public-eyebrow">How It Works</span>
@@ -185,19 +238,19 @@ function Home() {
           </div>
 
           <div className="works-grid">
-            <div className="work-card premium-card">
+            <div className="work-card premium-card home-cartoon-card">
               <div className="work-number">01</div>
               <h3>Submit Request</h3>
               <p>Tell us the class, subject, location, and preferred timing.</p>
             </div>
 
-            <div className="work-card premium-card">
+            <div className="work-card premium-card home-cartoon-card">
               <div className="work-number">02</div>
               <h3>Get Matched</h3>
               <p>We shortlist suitable tutors based on your learning needs.</p>
             </div>
 
-            <div className="work-card premium-card">
+            <div className="work-card premium-card home-cartoon-card">
               <div className="work-number">03</div>
               <h3>Start Learning</h3>
               <p>Begin personalized lessons with a tutor who fits your goals.</p>
@@ -206,7 +259,55 @@ function Home() {
         </div>
       </section>
 
-      <section className="tutors-section premium-section tinted-section">
+      <section className="student-fit-section premium-section tinted-section home-trust-cartoon">
+        <div className="container student-fit-shell premium-card">
+          <div>
+            <span className="public-eyebrow">
+              <FaThumbsUp />
+              Why Students Choose Us
+            </span>
+            <h2>Learning support built for real student needs.</h2>
+            <p>
+              We focus on consistency, confidence, and exam outcomes with a
+              practical study approach for home tuition.
+            </p>
+
+            <ul className="student-benefits">
+              {studentBenefits.map((benefit) => (
+                <li key={benefit}>
+                  <FaCheckCircle />
+                  {benefit}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="student-fit-stat-grid">
+            <div className="student-fit-stat">
+              <FaUserGraduate />
+              <strong>100%</strong>
+              <span>Personalized learning plans</span>
+            </div>
+            <div className="student-fit-stat">
+              <FaPenNib />
+              <strong>Weekly</strong>
+              <span>Practice tests and revision</span>
+            </div>
+            <div className="student-fit-stat">
+              <FaMapMarkerAlt />
+              <strong>Local</strong>
+              <span>Home tutors near your area</span>
+            </div>
+            <div className="student-fit-stat">
+              <FaShieldAlt />
+              <strong>Trusted</strong>
+              <span>Screened and quality-focused tutors</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="tutors-section premium-section tinted-section home-learning-cartoon">
         <div className="container">
           <div className="section-title">
             <span className="public-eyebrow">Featured Tutors</span>
@@ -215,7 +316,7 @@ function Home() {
 
           <div className="tutors-grid">
             {tutors.map((tutor) => (
-              <div className="tutor-card premium-card" key={tutor.name}>
+              <div className="tutor-card premium-card home-cartoon-card" key={tutor.name}>
                 <img className="tutor-image" src={tutor.image} alt={tutor.name} />
                 <h3>{tutor.name}</h3>
                 <span>{tutor.subject}</span>
@@ -226,7 +327,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="testimonial-section premium-section">
+      <section className="testimonial-section premium-section home-trust-cartoon">
         <div className="container">
           <div className="section-title">
             <span className="public-eyebrow">Testimonials</span>
@@ -239,7 +340,7 @@ function Home() {
               ["The tutor quality is amazing and my child's confidence has improved.", "Rizwan Khan"],
               ["Very professional platform with experienced tutors and quick support.", "Priya Mehta"],
             ].map(([quote, name]) => (
-              <div className="testimonial-card premium-card" key={name}>
+              <div className="testimonial-card premium-card home-cartoon-card" key={name}>
                 <FaQuoteLeft />
                 <p>{quote}</p>
                 <h4>{name}</h4>
@@ -249,7 +350,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="cta-section public-cta">
+      <section className="cta-section public-cta home-cta-cartoon">
         <div className="container">
           <div className="cta-content">
             <span className="public-eyebrow">Start Today</span>
@@ -271,6 +372,28 @@ function Home() {
           </div>
         </div>
       </section>
+
+      <div className="home-floating-actions" aria-label="Quick contact actions">
+        <a
+          className="floating-btn whatsapp-btn"
+          href="https://wa.me/919876543210"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Chat on WhatsApp"
+          title="Chat on WhatsApp"
+        >
+          <FaWhatsapp />
+        </a>
+
+        <a
+          className="floating-btn call-btn"
+          href="tel:+919876543210"
+          aria-label="Call now"
+          title="Call now"
+        >
+          <FaPhoneAlt />
+        </a>
+      </div>
     </>
   );
 }

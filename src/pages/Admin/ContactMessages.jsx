@@ -16,6 +16,8 @@ function ContactMessages() {
     useState("");
   const [selectedMessage, setSelectedMessage] =
     useState(null);
+  const [statusFilter, setStatusFilter] =
+    useState("all");
 
   // FETCH MESSAGES
   const fetchMessages = async () => {
@@ -46,13 +48,21 @@ function ContactMessages() {
 
   // SEARCH FILTER
   const filteredMessages = messages.filter(
-    (msg) =>
-      msg.name
+    (msg) => {
+      const searchMatched = msg.name
         .toLowerCase()
         .includes(searchTerm.toLowerCase()) ||
       msg.email
         .toLowerCase()
-        .includes(searchTerm.toLowerCase())
+        .includes(searchTerm.toLowerCase());
+
+      if (!searchMatched) return false;
+      if (statusFilter === "all") return true;
+      return (
+        (msg.status || "")
+          .toLowerCase() === statusFilter
+      );
+    }
   );
 
   // MARK AS READ
@@ -193,6 +203,22 @@ function ContactMessages() {
             </div>
 
           </div>
+          <div className="mobile-filter-strip">
+            {[
+              ["all", "All"],
+              ["resolved", "Resolved"],
+              ["new", "New"],
+            ].map(([value, label]) => (
+              <button
+                key={value}
+                type="button"
+                className={`filter-chip ${statusFilter === value ? "active" : ""}`}
+                onClick={() => setStatusFilter(value)}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
 
           <div className="dashboard-table-wrapper">
 
@@ -218,16 +244,16 @@ function ContactMessages() {
 
                     <tr key={msg.id}>
 
-                      <td>{msg.name}</td>
+                      <td data-label="Name">{msg.name}</td>
 
-                      <td>{msg.email}</td>
+                      <td data-label="Email">{msg.email}</td>
 
-                      <td>
+                      <td data-label="Message">
                         {msg.message.slice(0, 40)}
                         ...
                       </td>
 
-                      <td>
+                      <td data-label="Status">
 
                         <span
                           className={`status-pill ${
@@ -243,7 +269,7 @@ function ContactMessages() {
                       </td>
 
                       {/* ACTIONS */}
-                      <td>
+                      <td data-label="Actions">
 
                         <div className="table-actions">
 

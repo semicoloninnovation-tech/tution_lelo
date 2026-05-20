@@ -73,7 +73,7 @@ function Contact() {
   };
 
   return (
-    <section className="contact-page inner-page premium-section">
+    <section className="contact-page inner-page premium-section cartoon-contact-bg">
 
       <div className="container">
 
