@@ -34,7 +34,7 @@ function Contact() {
     try {
 
       const response = await fetch(
-        "https://vnaksh.com/tutor/contactMessage.php",
+        "http://localhost/tutionlelo_api/contactMessage.php",
         {
           method: "POST",
           headers: {

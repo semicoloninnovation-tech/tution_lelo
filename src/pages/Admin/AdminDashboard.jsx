@@ -46,7 +46,7 @@ function AdminDashboard() {
 
       // STUDENT REQUESTS
       const studentResponse = await fetch(
-        "https://vnaksh.com/tutor/getStudentRequests.php"
+        "http://localhost/tutionlelo_api/getStudentRequests.php"
       );
 
       const studentData =
@@ -57,7 +57,7 @@ function AdminDashboard() {
 
       // TUTOR DATA
       const tutorResponse = await fetch(
-        "https://vnaksh.com/tutor/getTutors.php"
+        "http://localhost/tutionlelo_api/getTutors.php"
       );
 
       const tutorData =
@@ -67,7 +67,7 @@ function AdminDashboard() {
 
       // CONTACT DATA
       const contactResponse = await fetch(
-        "https://vnaksh.com/tutor/getContactMessages.php"
+        "http://localhost/tutionlelo_api/getContactMessages.php"
       );
 
       const contactData =

@@ -27,7 +27,7 @@ function Subjects() {
     try {
 
       const response = await fetch(
-        "https://vnaksh.com/tutor/getSubjects.php"
+        "http://localhost/tutionlelo_api/getSubjects.php"
       );
 
       const data =
@@ -63,7 +63,7 @@ function Subjects() {
     try {
 
       const response = await fetch(
-        "https://vnaksh.com/tutor/addSubject.php",
+        "http://localhost/tutionlelo_api/addSubject.php",
         {
           method: "POST",
 
@@ -110,7 +110,7 @@ function Subjects() {
     try {
 
       const response = await fetch(
-        "https://vnaksh.com/tutor/deleteSubject.php",
+        "http://localhost/tutionlelo_api/deleteSubject.php",
         {
           method: "POST",
 

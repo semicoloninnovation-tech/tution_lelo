@@ -25,7 +25,7 @@ function ContactMessages() {
     try {
 
       const response = await fetch(
-        "https://vnaksh.com/tutor/getContactMessages.php"
+        "http://localhost/tutionlelo_api/getContactMessages.php"
       );
 
       const data = await response.json();
@@ -71,7 +71,7 @@ function ContactMessages() {
     try {
 
       const response = await fetch(
-        "https://vnaksh.com/tutor/updateMessageStatus.php",
+        "http://localhost/tutionlelo_api/updateMessageStatus.php",
         {
           method: "POST",
           headers: {
@@ -113,7 +113,7 @@ function ContactMessages() {
     try {
 
       const response = await fetch(
-        "https://vnaksh.com/tutor/deleteContactMessage.php",
+        "http://localhost/tutionlelo_api/deleteContactMessage.php",
         {
           method: "POST",
           headers: {

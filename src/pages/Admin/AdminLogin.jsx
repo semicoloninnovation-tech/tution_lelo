@@ -43,7 +43,7 @@ function AdminLogin() {
     try {
 
       const response = await fetch(
-        "https://vnaksh.com/tutor/adminLogin.php",
+        "http://localhost/tutionlelo_api/adminLogin.php",
         {
           method: "POST",
           headers: {

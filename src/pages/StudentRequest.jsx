@@ -35,7 +35,7 @@ function StudentRequest() {
     try {
 
       const response = await fetch(
-        "https://vnaksh.com/tutor/studentRequest.php",
+        "http://localhost/tutionlelo_api/studentRequest.php",
         {
           method: "POST",
           headers: {

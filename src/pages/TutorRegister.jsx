@@ -27,7 +27,7 @@ function TutorRegister() {
   useEffect(() => {
 
     fetch(
-      "https://vnaksh.com/tutor/getSubjects.php"
+      "http://localhost/tutionlelo_api/getSubjects.php"
     )
       .then((response) => response.json())
       .then((data) => {
@@ -71,7 +71,7 @@ function TutorRegister() {
     try {
 
       const response = await fetch(
-        "https://vnaksh.com/tutor/registerTutor.php",
+        "http://localhost/tutionlelo_api/registerTutor.php",
         {
           method: "POST",
 

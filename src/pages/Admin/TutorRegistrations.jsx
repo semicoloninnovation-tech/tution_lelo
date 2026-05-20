@@ -20,7 +20,7 @@ function TutorRegistrations() {
   const fetchTutors = async () => {
     try {
       const response = await fetch(
-        "https://vnaksh.com/tutor/getTutors.php"
+        "http://localhost/tutionlelo_api/getTutors.php"
       );
 
       const data = await response.json();
@@ -52,7 +52,7 @@ function TutorRegistrations() {
   const handleApprove = async (id) => {
     try {
       const response = await fetch(
-        "https://vnaksh.com/tutor/approveTutor.php",
+        "http://localhost/tutionlelo_api/approveTutor.php",
         {
           method: "POST",
           headers: {
@@ -83,7 +83,7 @@ function TutorRegistrations() {
 
     try {
       const response = await fetch(
-        "https://vnaksh.com/tutor/deleteTutor.php",
+        "http://localhost/tutionlelo_api/deleteTutor.php",
         {
           method: "POST",
           headers: {

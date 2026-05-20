@@ -7,7 +7,7 @@ import {
   getTests as getTestsLocal,
 } from "./memberData";
 
-const API_BASE = "https://vnaksh.com/tutor";
+const API_BASE = "http://localhost/tutionlelo_api";
 
 async function safeJson(response) {
   if (!response.ok) {

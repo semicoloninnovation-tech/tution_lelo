@@ -25,7 +25,7 @@ function StudentRequests() {
     try {
 
       const response = await fetch(
-        "https://vnaksh.com/tutor/getStudentRequests.php"
+        "http://localhost/tutionlelo_api/getStudentRequests.php"
       );
 
       const data = await response.json();
@@ -71,7 +71,7 @@ function StudentRequests() {
     try {
 
       const response = await fetch(
-        "https://vnaksh.com/tutor/approveStudentRequest.php",
+        "http://localhost/tutionlelo_api/approveStudentRequest.php",
         {
           method: "POST",
           headers: {
@@ -110,7 +110,7 @@ function StudentRequests() {
     try {
 
       const response = await fetch(
-        "https://vnaksh.com/tutor/deleteStudentRequest.php",
+        "http://localhost/tutionlelo_api/deleteStudentRequest.php",
         {
           method: "POST",
           headers: {
@@ -231,8 +231,8 @@ function StudentRequests() {
                 <tr>
                   <th>Student</th>
                   <th>Class</th>
-                  <th>Subject</th>
-                  <th>Tutor</th>
+                  {/* <th>Subject</th>
+                  <th>Tutor</th> */}
                   <th>Location</th>
                   <th>Contact</th>
                   <th>Status</th>
@@ -255,9 +255,9 @@ function StudentRequests() {
                         {item.studentClass}
                       </td>
 
-                      <td data-label="Subject">{item.subject}</td>
+                      {/* <td data-label="Subject">{item.subject}</td> */}
 
-                      <td data-label="Tutor">{item.tutor}</td>
+                      {/* <td data-label="Tutor">{item.tutor}</td> */}
 
                       <td data-label="Location">{item.location}</td>
 
@@ -376,15 +376,15 @@ function StudentRequests() {
                 }
               </p>
 
-              <p>
+              {/* <p>
                 <strong>Subject:</strong>{" "}
                 {selectedStudent.subject}
-              </p>
+              </p> */}
 
-              <p>
+              {/* <p>
                 <strong>Tutor:</strong>{" "}
                 {selectedStudent.tutor}
-              </p>
+              </p> */}
 
               <p>
                 <strong>Location:</strong>{" "}
