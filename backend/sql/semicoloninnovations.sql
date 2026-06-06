@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS tuitionlelo CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE tuitionlelo;
+CREATE DATABASE IF NOT EXISTS semicoloninnovations CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE semicoloninnovations;
 
 CREATE TABLE IF NOT EXISTS members (
   id VARCHAR(32) PRIMARY KEY,
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS attendance (
 
 CREATE TABLE IF NOT EXISTS tests (
   id VARCHAR(32) PRIMARY KEY,
-  title VARCHAR(150) NOT NULL, 
+  title VARCHAR(150) NOT NULL,
   class_name VARCHAR(64) NOT NULL,
   subject VARCHAR(120) NOT NULL,
   test_date DATE NOT NULL,

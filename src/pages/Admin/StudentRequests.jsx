@@ -25,7 +25,7 @@ function StudentRequests() {
     try {
 
       const response = await fetch(
-        "http://localhost/tutionlelo_api/getStudentRequests.php"
+        "https://semicoloninnovations.in/tuitionleo/getStudentRequests.php"
       );
 
       const data = await response.json();
@@ -71,7 +71,7 @@ function StudentRequests() {
     try {
 
       const response = await fetch(
-        "http://localhost/tutionlelo_api/approveStudentRequest.php",
+        "https://semicoloninnovations.in/tuitionleo/approveStudentRequest.php",
         {
           method: "POST",
           headers: {
@@ -110,7 +110,7 @@ function StudentRequests() {
     try {
 
       const response = await fetch(
-        "http://localhost/tutionlelo_api/deleteStudentRequest.php",
+        "https://semicoloninnovations.in/tuitionleo/deleteStudentRequest.php",
         {
           method: "POST",
           headers: {

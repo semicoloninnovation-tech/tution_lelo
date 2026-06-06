@@ -7,7 +7,7 @@ import {
   getTests as getTestsLocal,
 } from "./memberData";
 
-const API_BASE = "http://localhost/tutionlelo_api";
+const API_BASE = "https://semicoloninnovations.in/tutor-api";
 
 async function safeJson(response) {
   if (!response.ok) {

@@ -34,7 +34,7 @@ function Contact() {
     try {
 
       const response = await fetch(
-        "http://localhost/tutionlelo_api/contactMessage.php",
+        "https://semicoloninnovations.in/tuitionleo/contactMessage.php",
         {
           method: "POST",
           headers: {

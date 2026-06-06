@@ -46,7 +46,7 @@ function AdminDashboard() {
 
       // STUDENT REQUESTS
       const studentResponse = await fetch(
-        "http://localhost/tutionlelo_api/getStudentRequests.php"
+        "https://semicoloninnovations.in/tuitionleo/getStudentRequests.php"
       );
 
       const studentData =
@@ -57,7 +57,7 @@ function AdminDashboard() {
 
       // TUTOR DATA
       const tutorResponse = await fetch(
-        "http://localhost/tutionlelo_api/getTutors.php"
+        "https://semicoloninnovations.in/tuitionleo/getTutors.php"
       );
 
       const tutorData =
@@ -67,7 +67,7 @@ function AdminDashboard() {
 
       // CONTACT DATA
       const contactResponse = await fetch(
-        "http://localhost/tutionlelo_api/getContactMessages.php"
+        "https://semicoloninnovations.in/tuitionleo/getContactMessages.php"
       );
 
       const contactData =

@@ -27,7 +27,7 @@ function Subjects() {
     try {
 
       const response = await fetch(
-        "http://localhost/tutionlelo_api/getSubjects.php"
+        "https://semicoloninnovations.in/tuitionleo/getSubjects.php"
       );
 
       const data =
@@ -63,7 +63,7 @@ function Subjects() {
     try {
 
       const response = await fetch(
-        "http://localhost/tutionlelo_api/addSubject.php",
+        "https://semicoloninnovations.in/tuitionleo/addSubject.php",
         {
           method: "POST",
 
@@ -110,7 +110,7 @@ function Subjects() {
     try {
 
       const response = await fetch(
-        "http://localhost/tutionlelo_api/deleteSubject.php",
+        "https://semicoloninnovations.in/tuitionleo/deleteSubject.php",
         {
           method: "POST",
 

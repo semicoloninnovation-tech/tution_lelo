@@ -5,6 +5,7 @@ These files are ready to deploy for:
 - Attendance
 - Tests
 - Teacher Login Authentication
+- Student Requests
 
 ## Files
 
@@ -20,6 +21,10 @@ Required files:
 - `createAttendance.php`
 - `getTests.php`
 - `createTest.php`
+- `studentRequest.php`
+- `getStudentRequests.php`
+- `approveStudentRequest.php`
+- `deleteStudentRequest.php`
 
 ## Database setup
 
@@ -64,6 +69,12 @@ Seed teacher credentials:
   - `{ date, studentId, teacherId, status }`
 - `/createTest.php`
   - `{ id, title, className, subject, date, createdBy }`
+- `/studentRequest.php`
+  - `{ name, studentClass, location, contact, subject, subjects, tutor }`
+- `/approveStudentRequest.php`
+  - `{ id }`
+- `/deleteStudentRequest.php`
+  - `{ id }`
 
 All POST success responses:
 - `{ "status": "success", "message": "..." }`

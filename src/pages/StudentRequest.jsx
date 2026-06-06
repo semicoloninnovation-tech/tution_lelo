@@ -35,7 +35,7 @@ function StudentRequest() {
     try {
 
       const response = await fetch(
-        "http://localhost/tutionlelo_api/studentRequest.php",
+        "https://semicoloninnovations.in/tuitionleo/studentRequest.php",
         {
           method: "POST",
           headers: {

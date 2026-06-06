@@ -27,7 +27,7 @@ function TutorRegister() {
   useEffect(() => {
 
     fetch(
-      "http://localhost/tutionlelo_api/getSubjects.php"
+      "https://semicoloninnovations.in/tuitionleo/getSubjects.php"
     )
       .then((response) => response.json())
       .then((data) => {
@@ -71,7 +71,7 @@ function TutorRegister() {
     try {
 
       const response = await fetch(
-        "http://localhost/tutionlelo_api/registerTutor.php",
+        "https://semicoloninnovations.in/tuitionleo/registerTutor.php",
         {
           method: "POST",
 

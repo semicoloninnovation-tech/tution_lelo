@@ -43,7 +43,7 @@ function AdminLogin() {
     try {
 
       const response = await fetch(
-        "http://localhost/tutionlelo_api/adminLogin.php",
+        "https://semicoloninnovations.in/tuitionleo/adminLogin.php",
         {
           method: "POST",
           headers: {

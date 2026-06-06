@@ -25,7 +25,7 @@ function ContactMessages() {
     try {
 
       const response = await fetch(
-        "http://localhost/tutionlelo_api/getContactMessages.php"
+        "https://semicoloninnovations.in/tuitionleo/getContactMessages.php"
       );
 
       const data = await response.json();
@@ -71,7 +71,7 @@ function ContactMessages() {
     try {
 
       const response = await fetch(
-        "http://localhost/tutionlelo_api/updateMessageStatus.php",
+        "https://semicoloninnovations.in/tuitionleo/updateMessageStatus.php",
         {
           method: "POST",
           headers: {
@@ -113,7 +113,7 @@ function ContactMessages() {
     try {
 
       const response = await fetch(
-        "http://localhost/tutionlelo_api/deleteContactMessage.php",
+        "https://semicoloninnovations.in/tuitionleo/deleteContactMessage.php",
         {
           method: "POST",
           headers: {
